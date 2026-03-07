@@ -1,0 +1,605 @@
+/* ============================================
+   INFINEX'26 - Mobile-First Responsive Design
+   ============================================ */
+
+/* CSS Custom Properties for Responsive Design */
+:root {
+    /* Fluid Typography Scale */
+    --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --font-size-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --font-size-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+    --font-size-3xl: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
+    --font-size-4xl: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
+    --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
+
+    /* Spacing Scale */
+    --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+    --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+    --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    --space-xl: clamp(2rem, 1.5rem + 2vw, 3rem);
+    --space-2xl: clamp(3rem, 2rem + 3vw, 4rem);
+
+    /* Container */
+    --container-padding: clamp(1rem, 0.5rem + 2vw, 2rem);
+    --container-max: 80rem;
+
+    /* Touch Targets */
+    --touch-target: 44px;
+    --touch-target-lg: 48px;
+}
+
+/* ============================================
+   BASE STYLES (Mobile First - 320px+)
+   ============================================ */
+
+/* Reset and Base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: #1e293b;
+    background-color: #F8F7F4;
+    /* Soft Ivory */
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Prevent horizontal overflow */
+img,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Typography Base */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #0c3d4a;
+    /* Deep Teal 700 */
+}
+
+h1 {
+    font-size: var(--font-size-4xl);
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+}
+
+h3 {
+    font-size: var(--font-size-2xl);
+}
+
+h4 {
+    font-size: var(--font-size-xl);
+}
+
+p {
+    margin-bottom: var(--space-sm);
+}
+
+/* ============================================
+   LAYOUT UTILITIES (Mobile First)
+   ============================================ */
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+/* Fluid responsive padding utilities */
+.px-fluid {
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+.py-fluid {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+}
+
+/* ============================================
+   HEADER & NAVIGATION (Mobile Optimized)
+   ============================================ */
+
+/* Header base - compact for mobile */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    min-height: 3.5rem;
+    /* 56px mobile min */
+    background: rgba(248, 247, 244, 0.95);
+    /* Ivory with opacity */
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(235, 233, 225, 0.5);
+    /* Ivory 200/50 */
+}
+
+/* Header info - optimized text wrapping */
+.header-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.header-info h1 {
+    font-size: clamp(0.55rem, 0.5rem + 0.3vw, 0.875rem);
+    line-height: 1.25;
+    margin: 0;
+}
+
+.header-info p {
+    font-size: clamp(0.45rem, 0.4rem + 0.2vw, 0.70rem);
+    line-height: 1.25;
+    margin: 0;
+    color: #64748b;
+}
+
+/* Touch-friendly hamburger button */
+#menu-toggle {
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Popup Menu - Mobile optimized */
+#popup-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    max-width: 20rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: all 0.3s ease;
+}
+
+#popup-menu:not(.invisible) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Menu items - touch optimized */
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1rem;
+    font-size: var(--font-size-base);
+    min-height: var(--touch-target-lg);
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+}
+
+/* ============================================
+   HERO SECTION (Mobile First)
+   ============================================ */
+
+#home {
+    min-height: 100svh;
+    /* Small viewport height for mobile */
+    min-height: 100vh;
+    /* Fallback */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+    /* Account for fixed header */
+    padding-bottom: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hero content constraints */
+#home>.relative {
+    width: 100%;
+    max-width: 100%;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+/* Hero image responsive */
+#home img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 25vh;
+    object-fit: contain;
+}
+
+/* Date/Location Pill - stacks on mobile */
+#home .inline-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    max-width: 90vw;
+}
+
+/* Countdown grid - 2x2 on mobile */
+#home .grid {
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
+}
+
+#home .grid>div {
+    padding: 0.75rem 0.5rem;
+    min-width: 0;
+}
+
+/* Countdown numbers */
+#home .font-display {
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+    line-height: 1;
+}
+
+/* ============================================
+   CHALLENGE CARDS (Mobile Optimized)
+   ============================================ */
+
+.challenge-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.challenge-card>div:first-child {
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.challenge-card>a {
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+}
+
+.challenge-card:active {
+    transform: scale(0.99);
+}
+
+/* Card icon sizing */
+.challenge-card .w-12 {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+/* ============================================
+   COMMITTEE SECTION (Mobile First)
+   ============================================ */
+
+#committee .grid>div {
+    padding: 1.5rem;
+}
+
+/* Committee cards - full width on mobile */
+#committee .bg-white {
+    display: flex;
+    flex-direction: column;
+}
+
+#committee ul {
+    list-style: none;
+}
+
+#committee li {
+    padding: 0.25rem 0;
+}
+
+/* ============================================
+   FOOTER (Mobile Optimized)
+   ============================================ */
+
+footer {
+    padding: 2rem 1rem;
+}
+
+footer .flex {
+    gap: 1rem;
+}
+
+footer a {
+    word-break: break-all;
+    max-width: 100%;
+}
+
+/* ============================================
+   ACCESSIBILITY UTILITIES
+   ============================================ */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid #0F4C5C;
+    outline-offset: 2px;
+}
+
+/* Touch action optimization */
+.touch-manipulation {
+    touch-action: manipulation;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================
+   TABLET BREAKPOINT (768px+)
+   ============================================ */
+
+@media (min-width: 768px) {
+
+    /* Header expansion */
+    header {
+        min-height: 4rem;
+    }
+
+    /* Hero adjustments */
+    #home {
+        padding-top: 5rem;
+    }
+
+    #home img {
+        max-height: 35vh;
+    }
+
+    /* Date pill - horizontal layout */
+    #home .inline-flex {
+        flex-direction: row;
+        gap: 0;
+        padding: 1rem 1.5rem;
+    }
+
+    /* Countdown - 4 columns */
+    #home .grid {
+        max-width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #home .grid>div {
+        padding: 1rem;
+    }
+
+    /* Challenge cards - 2 column grid */
+    #challenges .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Prize card visible */
+    #challenges .hidden.sm\\:flex {
+        display: flex;
+    }
+
+    /* Committee - 2 columns */
+    #committee .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer - horizontal layout */
+    footer .flex {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Touch targets can be slightly smaller on tablet */
+    .menu-item {
+        padding: 1rem 1.25rem;
+    }
+}
+
+/* ============================================
+   DESKTOP BREAKPOINT (1024px+)
+   ============================================ */
+
+@media (min-width: 1024px) {
+
+    /* Header full height */
+    header {
+        min-height: 5rem;
+    }
+
+    /* Hero max widths */
+    #home>.relative {
+        max-width: 64rem;
+    }
+
+    /* Challenge cards - 3 columns with prize in grid */
+    #challenges .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Committee - 3 columns */
+    #committee .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #committee .md\\:col-span-2 {
+        grid-column: span 2;
+    }
+
+    #committee .lg\\:col-span-1 {
+        grid-column: span 1;
+    }
+
+    /* Larger spacing */
+    section {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+
+    /* Popup menu positioning */
+    #popup-menu {
+        left: auto;
+        width: 16rem;
+    }
+}
+
+/* ============================================
+   LARGE DESKTOP (1280px+)
+   ============================================ */
+
+@media (min-width: 1280px) {
+
+    /* Max container width */
+    .max-w-7xl {
+        max-width: 80rem;
+    }
+
+    /* Challenge card min height for consistency */
+    .challenge-card {
+        min-height: 280px;
+    }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR (Desktop only)
+   ============================================ */
+
+@media (min-width: 1024px) {
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #94a3b8, #64748b);
+        border-radius: 5px;
+        border: 2px solid #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #64748b, #475569);
+    }
+}
+
+/* ============================================
+   SELECTION COLORS
+   ============================================ */
+
+::selection {
+    background: #D5E5E6;
+    color: #0c3d4a;
+}
+
+::-moz-selection {
+    background: #D5E5E6;
+    color: #0c3d4a;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+    header,
+    footer,
+    #menu-toggle,
+    #popup-menu {
+        display: none;
+    }
+
+    section {
+        page-break-inside: avoid;
+        padding: 1rem 0;
+    }
+
+    .challenge-card {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        margin-bottom: 1rem;
+    }
+}

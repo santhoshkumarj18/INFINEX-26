@@ -1,0 +1,62 @@
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
+
+    // When submitting via application/x-www-form-urlencoded, data is available in e.parameter
+    const data = e.parameter;
+
+    let fileUrl = "";
+
+    // If screenshot file is sent (as a base64 encoded string from HTML)
+    if (data.fileData && data.fileName && data.fileType) {
+      const folder = DriveApp.getFolderById("1-Wjn17A_N-sSMF-04HeXzmjHRlleYv7o");
+
+      const blob = Utilities.newBlob(
+        Utilities.base64Decode(data.fileData),
+        data.fileType,
+        data.fileName
+      );
+
+      const file = folder.createFile(blob);
+      fileUrl = file.getUrl();
+    }
+
+    const row = [
+      new Date(),
+      data["Registration Type"],
+      data["Full Name"],
+      data["College Name"],
+      data["Department"],
+      data["Year of Study"],
+      data["Phone Number"],
+      data["Email Address"],
+      data["Selected Main Event"],
+      data["Selected Sub Event"],
+      data["Team Member 2 Name"],
+      data["Team Member 2 Mobile"],
+      data["Team Member 2 College Name"],
+      data["Team Member 2 Department"],
+      data["Team Member 2 Year of Study"],
+      data["Team Member 3 Name"],
+      data["Team Member 3 Mobile"],
+      data["Team Member 3 College Name"],
+      data["Team Member 3 Department"],
+      data["Team Member 3 Year of Study"],
+      data["Transaction ID"],
+      data["Total fee"],
+      fileUrl
+    ];
+
+    sheet.appendRow(row);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ result: "success" })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ result: "error", message: error })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}

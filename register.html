@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Registration | INFINEX'26</title>
+    <link rel="icon" href="images/gteclogo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#F0F5F5',
+                            100: '#D5E5E6',
+                            400: '#439A9A',
+                            500: '#2C7A7B',
+                            600: '#0F4C5C',
+                            700: '#0C3D4A',
+                            800: '#0A313B',
+                            900: '#082830',
+                        },
+                        ivory: {
+                            DEFAULT: '#F8F7F4',
+                            50: '#FDFDFC',
+                            100: '#F8F7F4',
+                            200: '#EBE9E1',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(15, 76, 92, 0.08)',
+                        'soft-xl': '0 20px 40px -10px rgba(15, 76, 92, 0.12)',
+                        'drop': '0 4px 6px -1px rgba(15, 76, 92, 0.05), 0 2px 4px -1px rgba(15, 76, 92, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Input Styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #FDFDFC;
+            border: 1px solid #EBE9E1;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            color: #1e293b;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0F4C5C;
+            box-shadow: 0 0 0 4px rgba(15, 76, 92, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #475569;
+            margin-bottom: 0.375rem;
+        }
+
+        /* Hide number input spinners */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* File input styling */
+        input[type="file"]::file-selector-button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: #F0F5F5;
+            border: 1px solid #D5E5E6;
+            color: #0F4C5C;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 1rem;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background-color: #D5E5E6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        /* Spinner */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            width: 1.25rem;
+            height: 1.25rem;
+            animation: spin 1s linear infinite;
+        }
+
+        body {
+            background-color: #F8F7F4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body
+    class="text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-primary-100 selection:text-primary-700">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-ivory-50/90 backdrop-blur-md border-b-0 shadow-soft"
+        role="banner">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="index.html"
+                    class="flex items-center space-x-3 group outline-none focus-visible:ring-2 focus-visible:ring-primary-600 rounded-lg p-1">
+                    <div class="w-10 h-10">
+                        <img src="images/gteclogo.png" alt="GTEC Logo" class="w-full h-full object-contain p-1"
+                            onerror="this.style.display='none'">
+                    </div>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-display font-bold text-slate-900 leading-tight group-hover:text-primary-600 transition-colors text-sm md:text-base">INFINEX'26</span>
+                        <span class="text-[0.6rem] md:text-xs text-slate-500">Back to Home</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-24 pb-16 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        <!-- Header Section -->
+        <div class="w-full max-w-3xl text-center mb-8 md:mb-12 animate-fade-in">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary-700 mb-3 tracking-tight">
+                Symposium Registration
+            </h1>
+            <p class="text-slate-600 text-sm md:text-base max-w-xl mx-auto">
+                Complete your registration to participate in events.
+            </p>
+        </div>
+
+        <!-- Notification container -->
+        <div id="notification-area" class="w-full max-w-2xl hidden mb-6">
+            <div
+                class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-4 rounded-xl flex items-center shadow-drop">
+                <svg class="w-6 h-6 mr-3 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <h4 class="font-semibold text-sm">Registration Successful!</h4>
+                    <p class="text-xs mt-0.5 opacity-90">Thank you for registering. Your details have been recorded.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="w-full max-w-2xl bg-white rounded-2xl shadow-soft-xl border border-ivory-200 overflow-hidden animate-fade-in"
+            style="animation-delay: 0.1s;">
+            <div class="bg-primary-600 h-2 w-full"></div>
+
+            <form id="registrationForm" class="p-6 md:p-8 space-y-8" action="#" method="POST">
+
+                <!-- Personal Details Section -->
+                <div class="space-y-5">
+                    <h2 class="text-lg font-display font-semibold text-primary-700 border-b border-ivory-200 pb-2">
+                        Participant Details</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="md:col-span-2">
+                            <label class="form-label block mb-2">Registration Type <span
+                                    class="text-red-500">*</span></label>
+                            <div class="flex space-x-6">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="registrationType" value="individual" checked
+                                        class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    <span class="text-sm font-medium text-slate-700">Individual</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="registrationType" value="team"
+                                        class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    <span class="text-sm font-medium text-slate-700">Team</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="fullName" class="form-label">Full Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="fullName" name="fullName" class="form-input"
+                                placeholder="e.g. Santhosh Kumar J" required>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="collegeName" class="form-label">College Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="collegeName" name="collegeName" class="form-input"
+                                placeholder="Enter your full college name" required>
+                        </div>
+
+                        <div>
+                            <label for="department" class="form-label">Department <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="department" name="department" class="form-input"
+                                placeholder="e.g. Computer Science and Engineering" required>
+                        </div>
+
+                        <div>
+                            <label for="year" class="form-label">Year of Study <span
+                                    class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <select id="year" name="year" class="form-input appearance-none bg-white cursor-pointer"
+                                    required>
+                                    <option value="" disabled selected>Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                                <svg class="w-4 h-4 absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="form-label">Phone Number <span
+                                    class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-input"
+                                placeholder="10-digit mobile number" pattern="[0-9]{10}"
+                                title="Please enter a valid 10-digit mobile number." required>
+                        </div>
+
+                        <div>
+                            <label for="email" class="form-label">Email Address <span
+                                    class="text-red-500">*</span></label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Selection Section -->
+                <div class="space-y-5">
+                    <div class="flex items-center justify-between border-b border-ivory-200 pb-2">
+                        <h2 class="text-lg font-display font-semibold text-primary-700">Select Events</h2>
+                    </div>
+
+                    <div class="bg-primary-50 rounded-lg p-3 border border-primary-100/50 mb-4">
+                        <p class="text-sm text-primary-700 font-medium">Event Selection Rules:</p>
+                        <ul class="text-xs text-primary-600 mt-1 list-disc list-inside space-y-1">
+                            <li>Pick one Main Event or one Sub Event (or both).</li>
+                            <li>At least one event must be selected.</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Main Events -->
+                        <div class="bg-white p-4 rounded-xl border border-ivory-200 shadow-sm relative">
+                            <h3 class="font-semibold text-primary-600 mb-3 border-b border-ivory-100 pb-2">Main Events
+                                <!-- <span class="text-xs font-normal text-slate-400 ml-1">(Max 1)</span> -->
+                            </h3>
+                            <div class="space-y-3">
+                                <label class="flex items-start space-x-3 cursor-pointer group">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <input type="radio" name="mainEvent" value="paper"
+                                            class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-sm font-medium text-slate-700 group-hover:text-primary-600 transition-colors">Paper
+                                            Presentation</span>
+                                        <!--  <span class="text-[0.65rem] text-slate-400">Team size: 2–3</span> -->
+                                    </div>
+                                </label>
+                                <label class="flex items-start space-x-3 cursor-pointer group">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <input type="radio" name="mainEvent" value="webdev"
+                                            class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-sm font-medium text-slate-700 group-hover:text-primary-600 transition-colors">Web
+                                            Development</span>
+                                        <!--  <span class="text-[0.65rem] text-slate-400">Team size: 2</span> -->
+                                    </div>
+                                </label>
+                                <label class="flex items-start space-x-3 cursor-pointer group">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <input type="radio" name="mainEvent" value="quiz"
+                                            class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-sm font-medium text-slate-700 group-hover:text-primary-600 transition-colors">Technical
+                                            Quiz</span>
+                                        <!-- <span class="text-[0.65rem] text-slate-400">Individual (1 member)</span> -->
+                                    </div>
+                                </label>
+                                <button type="button"
+                                    class="text-xs text-slate-400 hover:text-red-500 text-left mt-2 clear-radio"
+                                    data-target="mainEvent">Clear Selection</button>
+                            </div>
+                        </div>
+
+                        <!-- Sub Events -->
+                        <div class="bg-white p-4 rounded-xl border border-ivory-200 shadow-sm relative">
+                            <h3 class="font-semibold text-primary-600 mb-3 border-b border-ivory-100 pb-2">Sub Events
+                                <!--       <span class="text-xs font-normal text-slate-400 ml-1">(Max 1)</span> -->
+                            </h3>
+                            <div class="space-y-3">
+                                <label class="flex items-start space-x-3 cursor-pointer group">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <input type="radio" name="subEvent" value="poster"
+                                            class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-sm font-medium text-slate-700 group-hover:text-primary-600 transition-colors">Poster
+                                            Design</span>
+                                        <!--    <span class="text-[0.65rem] text-slate-400">Team size: 2</span> -->
+                                    </div>
+                                </label>
+                                <label class="flex items-start space-x-3 cursor-pointer group">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <input type="radio" name="subEvent" value="coding"
+                                            class="w-4 h-4 text-primary-600 bg-ivory-50 border-ivory-200 focus:ring-primary-500">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="text-sm font-medium text-slate-700 group-hover:text-primary-600 transition-colors">Coding
+                                            & Debugging</span>
+                                        <!-- <span class="text-[0.65rem] text-slate-400">Team size: 2</span> -->
+                                    </div>
+                                </label>
+                                <button type="button"
+                                    class="text-xs text-slate-400 hover:text-red-500 text-left mt-2 clear-radio"
+                                    data-target="subEvent">Clear Selection</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="eventError" class="hidden text-red-500 text-sm font-medium mt-1">
+                        Please select at least one event.
+                    </div>
+
+                    <!-- Main Event Team Member Container -->
+                    <div id="teamMembersContainerMain"
+                        class="hidden bg-ivory-50 rounded-xl p-5 border border-ivory-200 space-y-4 shadow-inner">
+                        <h3 class="font-semibold text-primary-600 border-b border-ivory-100 pb-2">Main Event Team</h3>
+                        <p id="teamHelperTextMain" class="text-sm text-slate-500 mb-4"></p>
+                        <div id="dynamicFieldsAreaMain" class="space-y-4">
+                            <!-- Team Member rows injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Sub Event Team Member Container -->
+                    <div id="teamMembersContainerSub"
+                        class="hidden bg-ivory-50 rounded-xl p-5 border border-ivory-200 space-y-4 shadow-inner">
+                        <h3 class="font-semibold text-primary-600 border-b border-ivory-100 pb-2">Sub Event Team</h3>
+                        <p id="teamHelperTextSub" class="text-sm text-slate-500 mb-4"></p>
+                        <div id="dynamicFieldsAreaSub" class="space-y-4">
+                            <!-- Team Member rows injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="space-y-5">
+                    <h2 class="text-lg font-display font-semibold text-primary-700 border-b border-ivory-200 pb-2">
+                        Payment Details</h2>
+
+                    <div class="flex-shrink-0 flex flex-col items-center">
+                        <div
+                            class="w-32 h-32 bg-white rounded-xl shadow-sm border border-ivory-200 flex items-center justify-center p-2">
+
+                            <!-- QR Image -->
+                            <img src="images/barani.qr.jpeg" alt="Scan to Pay QR Code"
+                                class="w-100 h-100 object-contain">
+
+                        </div>
+                        <span class="text-xs font-medium text-slate-500 mt-2 uppercase tracking-wide">
+                            Scan to Pay
+                        </span>
+                    </div>
+                    <!-- Total Fee Display -->
+                    <div
+                        class="bg-primary-50 border border-primary-200 rounded-xl p-4 flex justify-between items-center shadow-inner mt-4">
+                        <span class="text-primary-800 font-semibold text-lg">Total Registration Fee:</span>
+                        <span id="totalFeeDisplay"
+                            class="text-2xl font-black text-primary-700 font-display transition-all duration-300">₹0</span>
+                    </div>
+                </div>
+                <!-- Instructions & Fields -->
+                <div class="flex-grow space-y-4 w-full">
+                    <div class="bg-primary-50 rounded-lg p-3 border border-primary-100/50">
+                        <p class="text-sm text-primary-700 font-medium">Instruction: Scan the QR code and upload
+                            payment proof below.</p>
+                    </div>
+
+                    <div>
+                        <label for="transactionId" class="form-label">Transaction ID / UTR No <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" id="transactionId" name="transactionId" class="form-input"
+                            placeholder="e.g. 123456789012" required>
+                    </div>
+
+                    <div>
+                        <label for="paymentProof" class="form-label">Upload Payment Screenshot <span
+                                class="text-red-500">*</span></label>
+                        <input type="file" id="paymentProof" name="paymentProof" class="form-input p-2"
+                            accept=".jpg,.jpeg,.png" required>
+                        <p class="text-[0.65rem] text-slate-500 mt-1.5 ml-1">Accepted formats: JPG, PNG. Max
+                            size: 2MB.</p>
+                    </div>
+                </div>
+        </div>
+
+        <!--   Total Fee Display 
+                    <div
+                        class="bg-primary-50 border border-primary-200 rounded-xl p-4 flex justify-between items-center shadow-inner mt-4">
+                        <span class="text-primary-800 font-semibold text-lg">Total Registration Fee:</span>
+                        <span id="totalFeeDisplay"
+                            class="text-2xl font-black text-primary-700 font-display transition-all duration-300">₹0</span>
+                    </div>
+                </div> -->
+
+        <!-- Submit Action -->
+        <div class="pt-4">
+            <button type="submit" id="submitBtn"
+                class="w-full bg-primary-600 text-white font-semibold text-lg py-3.5 px-6 rounded-xl shadow-drop hover:bg-primary-700 hover:shadow-soft-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50">
+                <span id="btnText">Complete Registration</span>
+                <div id="btnSpinner" class="spinner ml-3 hidden"></div>
+            </button>
+            <p class="text-center text-xs text-slate-400 mt-4">Ensure all details are accurate before submitting.</p>
+        </div>
+        </form>
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="bg-primary-900 text-white py-6 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-slate-400 text-xs sm:text-sm">INFINEX'26 | Ganadipathy Tulsi's Jain Engineering College</p>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const eventSelect = document.getElementById('eventSelect');
+            const teamContainerMain = document.getElementById('teamMembersContainerMain');
+            const dynamicFieldsAreaMain = document.getElementById('dynamicFieldsAreaMain');
+            const teamHelperTextMain = document.getElementById('teamHelperTextMain');
+
+            const teamContainerSub = document.getElementById('teamMembersContainerSub');
+            const dynamicFieldsAreaSub = document.getElementById('dynamicFieldsAreaSub');
+            const teamHelperTextSub = document.getElementById('teamHelperTextSub');
+            const form = document.getElementById('registrationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+            const fileInput = document.getElementById('paymentProof');
+            const notificationArea = document.getElementById('notification-area');
+
+            // Event Configuration
+            const eventConfig = {
+                paper: { name: 'Paper Presentation', count: 2, maxSize: 3, fee: { individual: 200, team: 300 } },
+                webdev: { name: 'Web Development', count: 1, maxSize: 2, fee: { individual: 150, team: 250 } },
+                poster: { name: 'Poster Design', count: 1, maxSize: 2, fee: { individual: 150, team: 250 } },
+                coding: { name: 'Coding & Debugging', count: 1, maxSize: 2, fee: { individual: 150, team: 250 } },
+                quiz: { name: 'Technical Quiz', count: 0, maxSize: 1, fee: { individual: 150, team: 150 } } // Quiz is always individual fee
+            };
+
+            const mainEventRadios = document.querySelectorAll('input[name="mainEvent"]');
+            const subEventRadios = document.querySelectorAll('input[name="subEvent"]');
+            const regTypeRadios = document.querySelectorAll('input[name="registrationType"]');
+            const clearButtons = document.querySelectorAll('.clear-radio');
+            const eventError = document.getElementById('eventError');
+            const totalFeeDisplay = document.getElementById('totalFeeDisplay');
+
+            function generateTeamFields(count, prefix) {
+                let html = '';
+                for (let i = 1; i <= count; i++) {
+                    let m = i + 1; // Team Leader is Member 1
+                    html += `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-4 rounded-lg border border-ivory-200">
+                            <div class="md:col-span-2 border-b border-ivory-100 pb-1 mb-1">
+                                <h4 class="text-sm font-semibold text-primary-600">Team Member ${m} <span class="text-slate-400 font-normal text-xs">(Optional)</span></h4>
+                            </div>
+                            <div>
+                                <label class="form-label text-xs">Name</label>
+                                <input type="text" name="${prefix}Member${m}Name" class="form-input py-2 text-sm" placeholder="Member ${m} Name">
+                            </div>
+                            <div>
+                                <label class="form-label text-xs">Mobile Number</label>
+                                <input type="tel" name="${prefix}Member${m}Phone" class="form-input py-2 text-sm" placeholder="10-digit number" pattern="[0-9]{10}">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="form-label text-xs">College Name</label>
+                                <input type="text" name="${prefix}Member${m}College" class="form-input py-2 text-sm" placeholder="Enter full college name">
+                            </div>
+                            <div>
+                                <label class="form-label text-xs">Department</label>
+                                <input type="text" name="${prefix}Member${m}Dept" class="form-input py-2 text-sm" placeholder="e.g. Computer Science">
+                            </div>
+                            <div>
+                                <label class="form-label text-xs">Year of Study</label>
+                                <div class="relative">
+                                    <select name="${prefix}Member${m}Year" class="form-input py-2 text-sm appearance-none bg-white cursor-pointer">
+                                        <option value="" disabled selected>Select Year</option>
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
+                                    <svg class="w-4 h-4 absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                return html;
+            }
+
+            function updateTeamFields() {
+                const mainSelected = document.querySelector('input[name="mainEvent"]:checked')?.value;
+                const subSelected = document.querySelector('input[name="subEvent"]:checked')?.value;
+                const regType = document.querySelector('input[name="registrationType"]:checked')?.value;
+
+                const fullNameInput = document.getElementById('fullName');
+                if (regType === 'team') {
+                    fullNameInput.placeholder = "Team Leader Name - member 1";
+                } else {
+                    fullNameInput.placeholder = "e.g. Santhosh Kumar J";
+                }
+
+                dynamicFieldsAreaMain.innerHTML = '';
+                dynamicFieldsAreaSub.innerHTML = '';
+
+                if (mainSelected || subSelected) {
+                    eventError.classList.add('hidden');
+                }
+
+                // Main Event Logic
+                if (mainSelected && regType === 'team') {
+                    const config = eventConfig[mainSelected];
+                    if (config.count === 0) {
+                        teamContainerMain.classList.add('hidden');
+                    } else {
+                        teamContainerMain.classList.remove('hidden');
+                        teamHelperTextMain.innerHTML = `You may optionally add up to ${config.count} team member(s) for <strong>${config.name}</strong>.`;
+                        dynamicFieldsAreaMain.innerHTML = generateTeamFields(config.count, 'main');
+                    }
+                } else {
+                    teamContainerMain.classList.add('hidden');
+                }
+
+                // Sub Event Logic
+                if (subSelected && regType === 'team') {
+                    const config = eventConfig[subSelected];
+                    if (config.count === 0) {
+                        teamContainerSub.classList.add('hidden');
+                    } else {
+                        teamContainerSub.classList.remove('hidden');
+                        teamHelperTextSub.innerHTML = `You may optionally add up to ${config.count} team member(s) for <strong>${config.name}</strong>.`;
+                        dynamicFieldsAreaSub.innerHTML = generateTeamFields(config.count, 'sub');
+                    }
+                } else {
+                    teamContainerSub.classList.add('hidden');
+                }
+
+                calculateTotalFee();
+            }
+
+            function calculateTotalFee() {
+                const mainSelected = document.querySelector('input[name="mainEvent"]:checked')?.value;
+                const subSelected = document.querySelector('input[name="subEvent"]:checked')?.value;
+                const regType = document.querySelector('input[name="registrationType"]:checked').value;
+
+                let totalFee = 0;
+
+                if (mainSelected) {
+                    // For quiz, force 'individual' fee structure regardless of what team radio is chosen
+                    const typeToUse = mainSelected === 'quiz' ? 'individual' : regType;
+                    totalFee += eventConfig[mainSelected].fee[typeToUse];
+                }
+
+                if (subSelected) {
+                    totalFee += eventConfig[subSelected].fee[regType];
+                }
+
+                totalFeeDisplay.textContent = `₹${totalFee}`;
+                return totalFee;
+            }
+
+            mainEventRadios.forEach(radio => radio.addEventListener('change', updateTeamFields));
+            subEventRadios.forEach(radio => radio.addEventListener('change', updateTeamFields));
+            regTypeRadios.forEach(radio => radio.addEventListener('change', updateTeamFields));
+
+            clearButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const targetName = e.target.getAttribute('data-target');
+                    const radios = document.querySelectorAll(`input[name="${targetName}"]`);
+                    radios.forEach(r => r.checked = false);
+                    updateTeamFields();
+                });
+            });
+
+            // File Size Validation (limit 2MB)
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const sizeInMB = file.size / (1024 * 1024);
+                    if (sizeInMB > 2) {
+                        alert("File size exceeds 2MB limit. Please upload a smaller image.");
+                        this.value = ""; // Clear selection
+                    }
+                }
+            });
+
+            // Handle Form Submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const mainSelected = document.querySelector('input[name="mainEvent"]:checked');
+                const subSelected = document.querySelector('input[name="subEvent"]:checked');
+
+                if (!mainSelected && !subSelected) {
+                    eventError.classList.remove('hidden');
+                    // Scroll to error visually
+                    document.getElementById('eventError').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                eventError.classList.add('hidden');
+
+                if (calculateTotalFee() === 0) {
+                    alert("Total registration fee cannot be ₹0. Please check your selections.");
+                    return;
+                }
+
+                // Visual Loading State
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+                btnText.textContent = 'Submitting...';
+                btnSpinner.classList.remove('hidden');
+                notificationArea.classList.add('hidden');
+
+                // Collect formData
+                const formData = new FormData(form);
+
+                try {
+                    const fetchUrl = 'https://script.google.com/macros/s/AKfycbzNr5Cl0F0DFft3hkX4rjQskOje-nyrLDtSP-sBv3I3QG0tHkbJwhk4yhRwIcuhDBLh/exec';
+
+                    let fileData = null;
+                    if (fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+                        const base64 = await new Promise((resolve) => {
+                            const reader = new FileReader();
+                            reader.onload = () => resolve(reader.result.split(',')[1]);
+                            reader.readAsDataURL(file);
+                        });
+
+                        fileData = {
+                            name: file.name,
+                            type: file.type,
+                            data: base64
+                        };
+                    }
+
+                    // THEN CREATE PAYLOAD
+                    // Using URLSearchParams ensures data is properly formatted as application/x-www-form-urlencoded
+                    // This allows Google Apps Script to parse it natively into e.parameter bypassing CORS issues
+                    const payload = new URLSearchParams();
+                    payload.append("Registration Type", formData.get("registrationType") || "");
+                    payload.append("Full Name", formData.get("fullName") || "");
+                    payload.append("College Name", formData.get("collegeName") || "");
+                    payload.append("Department", formData.get("department") || "");
+                    payload.append("Year of Study", formData.get("year") || "");
+                    payload.append("Phone Number", formData.get("phone") || "");
+                    payload.append("Email Address", formData.get("email") || "");
+                    payload.append("Selected Main Event", formData.get("mainEvent") || "");
+                    payload.append("Selected Sub Event", formData.get("subEvent") || "");
+                    payload.append("Team Member 2 Name", formData.get("mainMember2Name") || formData.get("subMember2Name") || "");
+                    payload.append("Team Member 2 Mobile", formData.get("mainMember2Phone") || formData.get("subMember2Phone") || "");
+                    payload.append("Team Member 2 College Name", formData.get("mainMember2College") || formData.get("subMember2College") || "");
+                    payload.append("Team Member 2 Department", formData.get("mainMember2Dept") || formData.get("subMember2Dept") || "");
+                    payload.append("Team Member 2 Year of Study", formData.get("mainMember2Year") || formData.get("subMember2Year") || "");
+                    payload.append("Team Member 3 Name", formData.get("mainMember3Name") || formData.get("subMember3Name") || "");
+                    payload.append("Team Member 3 Mobile", formData.get("mainMember3Phone") || formData.get("subMember3Phone") || "");
+                    payload.append("Team Member 3 College Name", formData.get("mainMember3College") || formData.get("subMember3College") || "");
+                    payload.append("Team Member 3 Department", formData.get("mainMember3Dept") || formData.get("subMember3Dept") || "");
+                    payload.append("Team Member 3 Year of Study", formData.get("mainMember3Year") || formData.get("subMember3Year") || "");
+                    payload.append("Transaction ID", formData.get("transactionId") || "");
+                    payload.append("Total fee", calculateTotalFee());
+
+                    if (fileData) {
+                        payload.append("fileName", fileData.name);
+                        payload.append("fileType", fileData.type);
+                        payload.append("fileData", fileData.data);
+                    }
+
+                    // SEND DATA
+                    await fetch(fetchUrl, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: payload.toString()
+                    });
+                    // Success State
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    notificationArea.classList.remove('hidden');
+                    form.reset();
+                    teamContainerMain.classList.add('hidden');
+                    teamContainerSub.classList.add('hidden');
+                    calculateTotalFee();
+
+                } catch (error) {
+                    alert('Submission failed. Please try again.');
+                    console.error(error);
+                } finally {
+                    // Reset Button State
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    btnText.textContent = 'Complete Registration';
+                    btnSpinner.classList.add('hidden');
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
