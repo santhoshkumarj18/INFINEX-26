@@ -726,19 +726,24 @@
                     payload.append("Phone Number", formData.get("phone") || "");
                     payload.append("Email Address", formData.get("email") || "");
                     payload.append("Selected Main Event", formData.get("mainEvent") || "");
+                    payload.append("(main) Member 2 Name", formData.get("mainMember2Name") || "");
+                    payload.append("(main) Member 2 Mobile", formData.get("mainMember2Phone") || "");
+                    payload.append("(main) Member 2 College Name", formData.get("mainMember2College") || "");
+                    payload.append("(main) Member 2 Department", formData.get("mainMember2Dept") || "");
+                    payload.append("(main) Member 2 Year of Study", formData.get("mainMember2Year") || "");
+                    payload.append("(main) Member 3 Name", formData.get("mainMember3Name") || "");
+                    payload.append("(main) Member 3 Mobile", formData.get("mainMember3Phone") || "");
+                    payload.append("(main) Member 3 College Name", formData.get("mainMember3College") || "");
+                    payload.append("(main) Member 3 Department", formData.get("mainMember3Dept") || "");
+                    payload.append("(main) Member 3 Year of Study", formData.get("mainMember3Year") || "");
                     payload.append("Selected Sub Event", formData.get("subEvent") || "");
-                    payload.append("Team Member 2 Name", formData.get("mainMember2Name") || formData.get("subMember2Name") || "");
-                    payload.append("Team Member 2 Mobile", formData.get("mainMember2Phone") || formData.get("subMember2Phone") || "");
-                    payload.append("Team Member 2 College Name", formData.get("mainMember2College") || formData.get("subMember2College") || "");
-                    payload.append("Team Member 2 Department", formData.get("mainMember2Dept") || formData.get("subMember2Dept") || "");
-                    payload.append("Team Member 2 Year of Study", formData.get("mainMember2Year") || formData.get("subMember2Year") || "");
-                    payload.append("Team Member 3 Name", formData.get("mainMember3Name") || formData.get("subMember3Name") || "");
-                    payload.append("Team Member 3 Mobile", formData.get("mainMember3Phone") || formData.get("subMember3Phone") || "");
-                    payload.append("Team Member 3 College Name", formData.get("mainMember3College") || formData.get("subMember3College") || "");
-                    payload.append("Team Member 3 Department", formData.get("mainMember3Dept") || formData.get("subMember3Dept") || "");
-                    payload.append("Team Member 3 Year of Study", formData.get("mainMember3Year") || formData.get("subMember3Year") || "");
+                    payload.append("(sub) Member 2 Name", formData.get("subMember2Name") || "");
+                    payload.append("(sub) Member 2 Mobile", formData.get("subMember2Phone") || "");
+                    payload.append("(sub) Member 2 College Name", formData.get("subMember2College") || "");
+                    payload.append("(sub) Member 2 Department", formData.get("subMember2Dept") || "");
+                    payload.append("(sub) Member 2 Year of Study", formData.get("subMember2Year") || "");
                     payload.append("Transaction ID", formData.get("transactionId") || "");
-                    payload.append("Total fee", calculateTotalFee());
+                    payload.append("Total Fee", calculateTotalFee());
 
                     if (fileData) {
                         payload.append("fileName", fileData.name);
